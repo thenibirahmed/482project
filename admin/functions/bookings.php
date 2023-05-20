@@ -13,3 +13,26 @@ function getBookings(){
     return $bookings;
 }
 
+function getSingleBooking($id){
+    global $conn;
+
+    $query = "SELECT * FROM bookings WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+
+    $booking = mysqli_fetch_assoc($result);
+
+    return $booking;
+}
+
+function getSingleUsersBooking($id){
+    global $conn;
+
+    $query = "SELECT * FROM bookings WHERE user_id = $id";
+    $result = mysqli_query($conn, $query);
+
+    $booking = mysqli_fetch_assoc($result);
+
+    return $booking;
+}
+
+
