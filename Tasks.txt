@@ -1,0 +1,6 @@
+- All Edit
+- All Delete
+- Search
+- Image upload
+- SMS sending
+- Payment gateway (Optional)

@@ -10,9 +10,10 @@
         die;
     }
 	
-	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/bookings.php';
-	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/locations.php';
 	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/users.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/locations.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/packages.php';
+	require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/bookings.php';
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
