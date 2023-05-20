@@ -1,0 +1,13 @@
+.header{
+    background: url('img/banner.jpg') no-repeat center center;
+    overflow: hidden;
+    
+}
+.banner{
+    padding: 100px 0px;
+}
+
+body {
+  font-size: .875rem;
+}
+
