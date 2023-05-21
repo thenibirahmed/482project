@@ -66,7 +66,7 @@
                                         <td><?php echo $location['name']; ?></td>
                                         <td>
                                             <a href="/admin/locations?id=<?php echo $location['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a href="/admin/locations?delete_id=<?php echo $location['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a onclick="return confirm('Are you sure you want to delete this location?')" href="/admin/functions/locations.php?delete_id=<?php echo $location['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

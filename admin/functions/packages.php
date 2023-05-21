@@ -31,7 +31,7 @@ if( isset($_POST['create_package']) ){
         $result = mysqli_query($conn, $query);
 
         if( $result ){
-            header('location: ../packages/index.php');
+            header('location: /admin/packages/');
         }else{
             $errors[] = 'Failed to add package';
         }
@@ -39,6 +39,61 @@ if( isset($_POST['create_package']) ){
 
     $_SESSION['errors'] = $errors;
     header('location: ../packages/create.php');
+}
+
+if( isset($_POST['edit_package']) ){
+    $name = $_POST['name'] ? trim($_POST['name']) : '';
+    $from_id = $_POST['from_id'] ? trim($_POST['from_id']) : '';
+    $to_id = $_POST['to_id'] ? trim($_POST['to_id']) : '';
+    $price = $_POST['price'] ? trim($_POST['price']) : '';
+    $descriptions = $_POST['descriptions'] ? trim($_POST['descriptions']) : '';
+    $from_date = $_POST['from_date'] ? trim($_POST['from_date']) : '';
+    $to_date = $_POST['to_date'] ? trim($_POST['to_date']) : '';
+    $images = $_FILES['images'] ?? '';
+    $id = $_POST['id'] ?? '';
+
+    $errors = [];
+    // Check any empty value
+    if( empty($name) || empty($from_id) || empty($to_id) || empty($price) || empty($from_date) || empty($to_date) ){
+        $errors[] = 'All fields are required';
+    }
+
+    if( $from_id === $to_id ){
+        $errors[] = 'From and To locations should be different';
+    }
+    
+    // Insert package
+    if( empty($errors) ){
+        // Upload images
+        $images = uploadMultipleImages($images);
+
+        $query = "UPDATE packages SET name = '$name', from_id = '$from_id', to_id = '$to_id', price = '$price', descriptions = '$descriptions', from_date = '$from_date', to_date = '$to_date' WHERE id = '$id'";
+        $result = mysqli_query($conn, $query);
+
+        if( $result ){
+            header('location: /admin/packages/');
+        }else{
+            $errors[] = 'Failed to add package';
+        }
+    }
+
+    $_SESSION['errors'] = $errors;
+    header('location: ../packages/edit.php?id='. $id);
+}
+
+if( isset($_GET['delete_id']) ){
+    $id = $_GET['delete_id'] ?? '';
+
+    if( $id == '' || ! is_numeric($id) ){
+        $errors[] = 'Invalid user id';
+    }
+
+    if( empty($errors) ){
+        deletePackage($id);
+    }
+
+    $_SESSION['errors'] = $errors;
+    header('location: /admin/packages/');
 }
 
 function uploadMultipleImages($images){
@@ -66,4 +121,17 @@ function getSinglePackage($id){
     $package = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
 
     return $package;
+}
+
+function deletePackage($id){
+    global $conn;
+
+    $query = "DELETE FROM packages WHERE id = '$id'";
+    $result = mysqli_query($conn, $query);
+
+    if( $result ){
+        header('location: /admin/packages/');
+    }else{
+        $errors[] = 'Failed to delete package';
+    }
 }

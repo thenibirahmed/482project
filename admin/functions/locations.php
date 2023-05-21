@@ -2,6 +2,21 @@
 
 require $_SERVER['DOCUMENT_ROOT'] .'/inc/connection.php';
 
+if( isset($_GET['delete_id']) ){
+    $id = $_GET['delete_id'] ?? '';
+
+    if( $id == '' || ! is_numeric($id) ){
+        $errors[] = 'Invalid user id';
+    }
+
+    if( empty($errors) ){
+        deleteLocation($id);
+    }
+
+    $_SESSION['errors'] = $errors;
+    header('location: /admin/locations/');
+}
+
 if( isset($_POST['add_location']) ){
     $name = $_POST['location_name'] ?? '';
     $name = trim($name);
@@ -67,21 +82,6 @@ if( isset($_POST['edit_location']) ){
     header('location: /admin/locations/');
 }
 
-if( isset($_GET['delete_id']) ){
-    $id = $_GET['delete_id'] ?? '';
-
-    if( $id == '' || ! is_numeric($id) ){
-        $errors[] = 'Invalid user id';
-    }
-
-    if( empty($errors) ){
-        deleteLocation($id);
-    }
-
-    $_SESSION['errors'] = $errors;
-    header('location: /admin/locations/');
-}
-
 function getLocations(){
     global $conn;
 
@@ -111,12 +111,12 @@ function deleteLocation($id){
     $result = mysqli_query($conn, $query);
 
     if( $result ){
-        header('location: ../locations/index.php');
+        header('location: /admin/locations/');
     }else{
         $errors[] = 'Failed to delete user';
     }
 
     $_SESSION['errors'] = $errors;
-    header('location: ../locations/index.php');
+    header('location: ./admin/locations/');
 }
 

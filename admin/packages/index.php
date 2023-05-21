@@ -46,8 +46,8 @@
                                 <td scope="col"><?php echo $package['price'] ?></td>
                                 <td scope="col"><?php echo substr($package['descriptions'], 0, 100); ?></td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    <a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                    <a href="/admin/packages/edit.php?id=<?php echo $package['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                    <a onclick="return confirm('Are you sure you want to delete this package?')" href="/admin/functions/packages.php?delete_id=<?php echo $package['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
