@@ -113,7 +113,7 @@ function deleteLocation($id){
     if( $result ){
         header('location: /admin/locations/');
     }else{
-        $errors[] = 'Failed to delete user';
+        $errors[] = 'Failed to delete location';
     }
 
     $_SESSION['errors'] = $errors;
