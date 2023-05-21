@@ -1,7 +1,9 @@
 <?php 
 
+require_once $_SERVER['DOCUMENT_ROOT'] .'/inc/config.php';
+
 // Connect to the database
-$conn = mysqli_connect('127.0.0.1', 'root', '', '482lab');
+$conn = mysqli_connect($host, $user, $pass, $db);
 
 if (!$conn) {
     echo 'Connection error: ' . mysqli_connect_error();
