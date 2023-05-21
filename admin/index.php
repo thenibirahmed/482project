@@ -35,8 +35,10 @@
 								<td><?php echo $booking['email'] ?></td>
 								<td><?php echo $booking['phone'] ?></td>
 								<td><?php echo $booking['address'] ?></td>
-								<td><?php echo $booking['user_id'] ?></td>
-								<td><?php echo $booking['package_id'] ?></td>
+								<?php $user = getSingleUser($booking['user_id']) ?>
+								<td><?php echo $user != null ? $user['name'] : 'Not Found' ?></td>
+								<?php $package = getSinglePackage($booking['package_id']) ?>
+								<td><?php echo $package != null ? $package['name'] : 'Not Found' ?></td>
 								<td><?php echo $booking['is_paid'] ?></td>
 								<td><?php echo $booking['members_info'] ?></td>
 								<td><?php echo $booking['pax'] ?></td>
