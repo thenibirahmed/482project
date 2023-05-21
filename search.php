@@ -134,6 +134,7 @@
                                             <td scope="col"><?php echo $package['price'] ?></td>
                                             <td scope="col"><?php echo substr($package['descriptions'], 0, 100); ?></td>
                                             <td scope="col">
+                                                <a href="details.php?id=<?php echo $package['id'] ?>" class="btn btn-sm btn-dark">See Detail</a>
                                                 <a href="checkout.php?id=<?php echo $package['id'] ?>" class="btn btn-sm btn-success">Book Now</a>
                                             </td>
                                         </tr>
