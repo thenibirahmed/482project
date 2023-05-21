@@ -23,6 +23,28 @@
 
                             <input type="submit" name="add_location" value="Create" class="btn btn-primary mt-3">
                         </form>
+
+                        <?php if(isset($_GET['id']) && $_GET['id'] != '' ): ?>
+                            <h3 class="mt-3">Edit Location</h3>
+                            <?php $location = getSingleLocation($_GET['id']) ?>
+                            <?php if($location != null): ?>
+
+                                <form class="d-inline-block" action="/admin/functions/locations.php" method="POST">
+                                    <label class="mb-3"><b>Name of Location</b></label>
+                                    <input type="text" name="location_name" value="<?php echo $location['name'] ?>" class="form-control">
+
+                                    <input type="hidden" name="location_id" value="<?php echo $location['id'] ?>">
+
+                                    <input type="submit" name="edit_location" value="Edit" class="btn btn-primary mt-3">
+                                </form>
+
+                                <a href="/admin/locations" class="btn btn-danger mt-3">Cancel</a>
+
+                            <?php else: ?>
+                            <!-- Alert -->
+                            <div class="alert alert-danger mt-3">Location not found</div>
+                        <?php endif; ?>
+                    <?php endif ?>
                     </div>
                     <div class="col-md-8">
 
@@ -43,8 +65,8 @@
                                         <td><?php echo $location['id']; ?></td>
                                         <td><?php echo $location['name']; ?></td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a href="/admin/locations?id=<?php echo $location['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <a href="/admin/locations?delete_id=<?php echo $location['id'] ?>" class="btn btn-sm btn-outline-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
