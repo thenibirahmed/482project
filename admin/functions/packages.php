@@ -135,3 +135,39 @@ function deletePackage($id){
         $errors[] = 'Failed to delete package';
     }
 }
+
+function searchPackages($from_id, $to_id, $name){
+
+    $from_id = $from_id ? trim($from_id) : '';
+    $to_id = $to_id ? trim($to_id) : '';
+    $name = $name ? trim($name) : '';
+
+    // Initialize query
+    $query = "SELECT * FROM packages WHERE 1 = 1 AND ";
+
+    // filter query with from_id 
+    $query .= $from_id ? "from_id = '$from_id' OR " : '';
+
+    // filter query with to_id
+    $query .= $to_id ? "to_id = '$to_id' OR " : '';
+
+    // filter query with name
+    $query .= $name ? "name LIKE '%$name%' OR " : '';
+
+    
+    // Remove the last OR and AND
+    $query = rtrim($query, 'OR ');
+    $query = rtrim($query, 'AND ');
+
+    // die($query);
+
+    global $conn;
+    
+    // Execute query
+    $result = mysqli_query($conn, $query);
+
+    $packages = mysqli_num_rows($result) > 0 ? mysqli_fetch_all($result, MYSQLI_ASSOC) : null;
+
+    return $packages;
+
+}

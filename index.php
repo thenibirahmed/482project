@@ -1,5 +1,6 @@
 <?php
-    require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/packages.php'
+    require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/packages.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/locations.php';
 ?>
 
 <!DOCTYPE html>
@@ -52,25 +53,31 @@
                     </div>
                     <div class="col-md-5">
                         <div class="form">
-                            <label class="text-light">From</label>
-                            <select class="form-select">
-                                <option name="dhaka">Dhaka</option>
-                                <option name="dhaka">Chittagong</option>
-                                <option name="dhaka">Sylhet</option>
-                            </select>
 
-                            <label class="text-light mt-3">To</label>
-                            <select class="form-select">
-                                <option name="dhaka">Sajek</option>
-                                <option name="dhaka">Cox's Bazar</option>
-                                <option name="dhaka">Sylhet</option>
-                            </select>
+                            <form action="search.php" method="GET">
+                                <label class="text-light">Tour Name</label>
+                                <input type="text" class="form-control">
 
-                            <label class="text-light mt-3">Date</label>
-                            <input type="date" class="form-control">
+                                <?php $locations = getLocations() ?>
+                                <label class="text-light mt-3">From</label>
+                                <select name="from_id" class="form-control">
+                                    <?php foreach ($locations as $location): ?>
+                                        <option value="">Select</option>
+                                        <option value="<?php echo $location['id'] ?>"><?php echo $location['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
 
-                            <a href="search.php" class="btn btn-light mt-3">Search</a>
-                            <!-- <input type="submit" class="btn btn-light mt-3" value="search"> -->
+                                <label class="text-light mt-3">To</label>
+                                <select name="to_id" class="form-control">
+                                    <option value="">Select</option>
+                                    <?php foreach ($locations as $location): ?>
+                                        <option value="<?php echo $location['id'] ?>"><?php echo $location['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <input type="submit" class="btn btn-light mt-3" value="Search">
+                            </form>
+
                         </div>
                     </div>
                 </div>
