@@ -43,29 +43,34 @@
                         <?php if(isset($_GET['id']) && $_GET['id'] != '' ): ?>
                             <h3 class="mt-3">Edit User</h3>
                             <?php $user = getSingleUser($_GET['id']) ?>
-                            <form class="d-inline-block" action="/admin/functions/users.php" method="POST">
-                                <label class="mb-3"><b>Name</b></label>
-                                <input type="text" name="name" value="<?php echo $user['name'] ?>" class="form-control">
-                                
-                                <label class="mt-3"><b>Email</b></label>
-                                <input type="email" name="email" value="<?php echo $user['email'] ?>" class="form-control">
-                                
-                                <label class="mt-3"><b>Phone</b></label>
-                                <input type="text" name="phone" value="<?php echo $user['phone'] ?>" class="form-control">
-                                
-                                <label class="mt-3"><b>Role</b></label>
-                                <select name="role" class="form-control">
-                                    <option <?php echo $user['role'] == 'admin' ? 'selected' : '' ?> value="admin">Admin</option>
-                                    <option <?php echo $user['role'] == 'customer' ? 'selected' : '' ?> value="customer">Customer</option>
-                                </select>
+                            <?php if($user != null): ?>
+                                <form class="d-inline-block" action="/admin/functions/users.php" method="POST">
+                                    <label class="mb-3"><b>Name</b></label>
+                                    <input type="text" name="name" value="<?php echo $user['name'] ?>" class="form-control">
+                                    
+                                    <label class="mt-3"><b>Email</b></label>
+                                    <input type="email" name="email" value="<?php echo $user['email'] ?>" class="form-control">
+                                    
+                                    <label class="mt-3"><b>Phone</b></label>
+                                    <input type="text" name="phone" value="<?php echo $user['phone'] ?>" class="form-control">
+                                    
+                                    <label class="mt-3"><b>Role</b></label>
+                                    <select name="role" class="form-control">
+                                        <option <?php echo $user['role'] == 'admin' ? 'selected' : '' ?> value="admin">Admin</option>
+                                        <option <?php echo $user['role'] == 'customer' ? 'selected' : '' ?> value="customer">Customer</option>
+                                    </select>
 
-                                <label class="mt-3"><b>Password</b></label>
-                                <input type="password" name="password" class="form-control">
+                                    <label class="mt-3"><b>Password</b></label>
+                                    <input type="password" name="password" class="form-control">
 
-                                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">   
+                                    <input type="hidden" name="id" value="<?php echo $user['id'] ?>">   
 
-                                <input type="submit" name="edit_user" value="Update" class="btn btn-primary mt-3">
-                            </form>
+                                    <input type="submit" name="edit_user" value="Update" class="btn btn-primary mt-3">
+                                </form>
+                            <?php else: ?>
+                                <!-- Alert -->
+                                <div class="alert alert-danger mt-3">User not found</div>
+                            <?php endif; ?>
                             <a href="/admin/users" class="btn btn-danger mt-3">Cancel</a>
                         <?php endif; ?>
                     </div>

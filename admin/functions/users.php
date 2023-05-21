@@ -120,7 +120,7 @@ function getSingleUser($id){
     $query = "SELECT * FROM users WHERE id = $id";
     $result = mysqli_query($conn, $query);
 
-    $user = mysqli_fetch_assoc($result);
+    $user = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
 
     return $user;
 }

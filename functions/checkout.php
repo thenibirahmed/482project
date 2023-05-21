@@ -21,6 +21,11 @@ if(isset($_POST['checkout'])){
     // get price of the package
     $package = getSinglePackage($package_id);
 
+    if($package == null){
+        $_SESSION['errors'][] = 'Package not found';
+        header('Location: ../checkout.php');
+    }
+
     $price = $package['price'] * $pax;
 
     $name = $fname . ' ' . $lname;

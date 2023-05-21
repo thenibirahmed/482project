@@ -63,7 +63,7 @@ function getSinglePackage($id){
     $query = "SELECT * FROM packages WHERE id = '$id'";
     $result = mysqli_query($conn, $query);
 
-    $package = mysqli_fetch_assoc($result);
+    $package = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
 
     return $package;
 }

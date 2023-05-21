@@ -46,6 +46,11 @@
                 </div>
             </div>
         </nav>
+        <?php if($package == null) : ?>
+            <div class="alert alert-danger text-center" role="alert">
+                Package Not Found!
+            </div>
+        <?php endif; ?>
         <div class="banner">
             <div class="container">
                 <div class="row py-5">
