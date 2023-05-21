@@ -12,7 +12,7 @@
 				</div>
 
                 <!-- Show errors -->
-                <?php require "../functions/show_errors.php" ?>
+                <?php require $_SERVER['DOCUMENT_ROOT'] ."/admin/functions/show_errors.php" ?>
 
                 <form action="/admin/functions/packages.php" method="post">
                     <div class="mb-3">

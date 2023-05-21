@@ -38,6 +38,36 @@
 
                             <input type="submit" name="create_user" value="Create" class="btn btn-primary mt-3">
                         </form>
+
+                        <!-- Edit Form -->
+                        <?php if(isset($_GET['id']) && $_GET['id'] != '' ): ?>
+                            <h3 class="mt-3">Edit User</h3>
+                            <?php $user = getSingleUser($_GET['id']) ?>
+                            <form class="d-inline-block" action="/admin/functions/users.php" method="POST">
+                                <label class="mb-3"><b>Name</b></label>
+                                <input type="text" name="name" value="<?php echo $user['name'] ?>" class="form-control">
+                                
+                                <label class="mt-3"><b>Email</b></label>
+                                <input type="email" name="email" value="<?php echo $user['email'] ?>" class="form-control">
+                                
+                                <label class="mt-3"><b>Phone</b></label>
+                                <input type="text" name="phone" value="<?php echo $user['phone'] ?>" class="form-control">
+                                
+                                <label class="mt-3"><b>Role</b></label>
+                                <select name="role" class="form-control">
+                                    <option <?php echo $user['role'] == 'admin' ? 'selected' : '' ?> value="admin">Admin</option>
+                                    <option <?php echo $user['role'] == 'customer' ? 'selected' : '' ?> value="customer">Customer</option>
+                                </select>
+
+                                <label class="mt-3"><b>Password</b></label>
+                                <input type="password" name="password" class="form-control">
+
+                                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">   
+
+                                <input type="submit" name="edit_user" value="Update" class="btn btn-primary mt-3">
+                            </form>
+                            <a href="/admin/users" class="btn btn-danger mt-3">Cancel</a>
+                        <?php endif; ?>
                     </div>
                     <div class="col-8">
 
@@ -63,8 +93,8 @@
                                         <td><?php echo $user['phone']; ?></td>
                                         <td><?php echo ucwords($user['role']); ?></td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                            <a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
+                                            <a href="/admin/users?id=<?php echo $user['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <a href="/admin/functions/users.php?delete_id=<?php echo $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-sm btn-outline-secondary">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
