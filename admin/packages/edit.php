@@ -26,7 +26,7 @@
                 <!-- Show errors -->
                 <?php require $_SERVER['DOCUMENT_ROOT'] ."/admin/functions/show_errors.php" ?>
 
-                <form action="/admin/functions/packages.php" method="post">
+                <form action="/admin/functions/packages.php" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label"><b>Name</b></label>
                         <input type="text" value="<?php echo $package['name'] ?>" class="form-control" id="name" name="name">

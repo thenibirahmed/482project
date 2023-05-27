@@ -96,7 +96,7 @@ if( isset($_GET['delete_id']) ){
     header('location: /admin/packages/');
 }
 
-function uploadMultipleImages($images, $dir = '/images/'){
+function uploadMultipleImages($images, $dir = 'images/'){
 
     // Count # of uploaded files in array
     $total = count($images['name']);
@@ -109,12 +109,16 @@ function uploadMultipleImages($images, $dir = '/images/'){
 
         //Make sure we have a file path
         if ($tmpFilePath != ""){
+            $newName = time() . '-' . $images['name'][$i];
+
+            $pathToSave = $dir . $newName;
+
             //Setup our new file path
-            $newFilePath = $_SERVER['DOCUMENT_ROOT'] . $dir . $images['name'][$i];
+            $newFilePath = $_SERVER['DOCUMENT_ROOT'] . '/' . $dir . $newName;
 
             //Upload the file into the temp dir
             if(move_uploaded_file($tmpFilePath, $newFilePath)) {
-                $links[] = $newFilePath;
+                $links[] = $pathToSave;
             }
         }
     }
