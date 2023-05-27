@@ -96,9 +96,30 @@ if( isset($_GET['delete_id']) ){
     header('location: /admin/packages/');
 }
 
-function uploadMultipleImages($images){
-    // Upload images
-    $images = $_FILES['images'] ?? '';    
+function uploadImage($image, $dir = '/images/'){
+
+    // Get reference to uploaded image
+    $image_file = $image;
+
+    // Exit if no file uploaded
+    if (!isset($image_file)) {
+        die('No file uploaded.');
+    }
+
+    // Exit if is not a valid image file
+    $image_type = exif_imagetype($image_file["tmp_name"]);
+    if (!$image_type) {
+        die('Uploaded file is not an image.');
+    }
+
+    // Move the temp image file to the images/ directory
+    move_uploaded_file(
+        // Temp image location
+        $image_file["tmp_name"],
+
+        // New image location
+        $_SERVER['DOCUMENT_ROOT'] . $dir . $image_file["name"]
+    );    
 }
 
 function getPackages(){
