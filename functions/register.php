@@ -20,12 +20,12 @@ if ( isset( $_POST['register'] ) ) {
         empty( $confirm_password )
     ){
         $_SESSION['error'] = 'Please fill all the fields';
-        header( 'Location: ../registration.php' );
+        header( 'Location: /registration.php' );
     }
 
     if ( $password !== $confirm_password ) {
         $_SESSION['error'] = 'Password does not match';
-        header( 'Location: ../registration.php' );
+        header( 'Location: /registration.php' );
     } 
         
     $password = md5( $password );
@@ -34,7 +34,7 @@ if ( isset( $_POST['register'] ) ) {
     $sql = "INSERT INTO users (name, phone, email, password) VALUES ('$name', '$phone', '$email', '$password')";
 
     if ( mysqli_query( $conn, $sql ) ) {
-        header( 'Location: ../admin/index.php' );
+        header( 'Location: /admin' );
     } else {
         echo 'Error: ' . $sql . '<br>' . mysqli_error( $conn );
     }

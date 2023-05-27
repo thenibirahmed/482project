@@ -1,3 +1,8 @@
 - Image upload
 - SMS sending
 - Payment gateway (Optional)
+- CDN
+- Encryption
+- AJAX
+- Lazy Loading
+- SQL injection 

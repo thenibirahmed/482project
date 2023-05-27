@@ -8,8 +8,19 @@
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Dashboard</h1>
 				</div>
-				<h5 class="my-4">All Bookings</h5>
-				<?php $bookings = getBookings() ?>
+				<?php if( $_SESSION['user']['role'] == 'admin' ): ?>
+					<h5 class="my-4">All Bookings</h5>
+				<?php else: ?>
+					<h5 class="my-4">My Bookings</h5>
+				<?php endif ?>
+				
+				<?php 
+					if( $_SESSION['user']['role'] == 'admin' ){
+						$bookings = getBookings();
+					}else{
+						$bookings = getSingleUsersBooking($_SESSION['user']['id']);
+					}
+				?>
 				<div class="table-responsive">
 					<table class="table table-striped  ">
 						<thead>
@@ -25,30 +36,41 @@
 								<th scope="col">Members info</th>
 								<th scope="col">Pax</th>
 								<th scope="col">Price</th>
+								<?php if( $_SESSION['user']['role'] == 'admin' ): ?>
+									<th>Actions</th>
+								<?php endif; ?>
 							</tr>
 						</thead>
 						<tbody>
-							<?php foreach($bookings as $booking): ?>
-							<tr>
-								<td><?php echo $booking['id'] ?></td>
-								<td><?php echo $booking['name'] ?></td>
-								<td><?php echo $booking['email'] ?></td>
-								<td><?php echo $booking['phone'] ?></td>
-								<td><?php echo $booking['address'] ?></td>
-								<?php $user = getSingleUser($booking['user_id']) ?>
-								<td><?php echo $user != null ? $user['name'] : 'Not Found' ?></td>
-								<?php $package = getSinglePackage($booking['package_id']) ?>
-								<td><?php echo $package != null ? $package['name'] : 'Not Found' ?></td>
-								<td><?php echo $booking['is_paid'] ?></td>
-								<td><?php echo $booking['members_info'] ?></td>
-								<td><?php echo $booking['pax'] ?></td>
-								<td><?php echo $booking['price'] ?></td>
-								<td>
-									<a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
-									<a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
-								</td>
-							</tr>
-							<?php endforeach; ?>
+							<?php if($bookings!=null): ?>
+								<?php foreach($bookings as $booking): ?>
+								<tr>
+									<td><?php echo $booking['id'] ?></td>
+									<td><?php echo $booking['name'] ?></td>
+									<td><?php echo $booking['email'] ?></td>
+									<td><?php echo $booking['phone'] ?></td>
+									<td><?php echo $booking['address'] ?></td>
+									<?php $user = getSingleUser($booking['user_id']) ?>
+									<td><?php echo $user != null ? $user['name'] : 'Not Found' ?></td>
+									<?php $package = getSinglePackage($booking['package_id']) ?>
+									<td><?php echo $package != null ? $package['name'] : 'Not Found' ?></td>
+									<td><?php echo $booking['is_paid'] ?></td>
+									<td><?php echo $booking['members_info'] ?></td>
+									<td><?php echo $booking['pax'] ?></td>
+									<td><?php echo $booking['price'] ?></td>
+									<?php if( $_SESSION['user']['role'] == 'admin' ): ?>
+									<td>
+										<a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
+										<a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
+									</td>
+									<?php endif; ?>
+								</tr>
+								<?php endforeach; ?>
+							<?php else: ?>
+								<tr>
+									<td colspan="11" class="text-center"><b>No Bookings Found</b></td>
+								</tr>
+							<?php endif ?>
 						</tbody>
 					</table>
 				</div>

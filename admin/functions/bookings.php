@@ -30,9 +30,9 @@ function getSingleUsersBooking($id){
     $query = "SELECT * FROM bookings WHERE user_id = $id";
     $result = mysqli_query($conn, $query);
 
-    $booking = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
+    $bookings = mysqli_num_rows($result) > 0 ? mysqli_fetch_all($result, MYSQLI_ASSOC) : null;
 
-    return $booking;
+    return $bookings;
 }
 
 

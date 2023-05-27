@@ -1,5 +1,9 @@
 <?php 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/connection.php';
+    
+    if( isset($_SESSION['user']) ){
+        header('Location: /admin');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,14 +58,15 @@
                             <button class="btn btn-primary btn-lg btn-block" type="submit" name="login">Login</button>
                         </form>
                         
-                        <hr class="my-4">
+                        <!-- <hr class="my-4"> -->
 
-                        <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
-                        <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button>
+                        <!-- <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+                        <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;" type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> -->
                     </div>
                 </div>
                 <div class="text-center">
                     <a href="index.php" class="d-block text-sm text-light mt-3">Back to page</a>
+                    <a href="registration.php" class="d-block text-sm text-light mt-3">Register</a>
                 </div>
             </div>
         </div>
