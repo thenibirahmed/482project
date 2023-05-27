@@ -59,10 +59,11 @@
 									<td><?php echo $booking['pax'] ?></td>
 									<td><?php echo $booking['price'] ?></td>
 									<?php if( $_SESSION['user']['role'] == 'admin' ): ?>
-									<td>
-										<a href="" class="btn btn-sm btn-outline-secondary">Edit</a>
-										<a href="" class="btn btn-sm btn-outline-secondary">Delete</a>
-									</td>
+										<td>
+											<a href="/admin/bookings/edit.php?id=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+											<a href="/admin/functions/bookings.php?delete_id=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-secondary"
+											onclick="return confirm('Are you sure you want to delete the booking?')">Delete</a>
+										</td>
 									<?php endif; ?>
 								</tr>
 								<?php endforeach; ?>

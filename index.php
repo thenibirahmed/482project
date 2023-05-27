@@ -61,8 +61,8 @@
                                 <?php $locations = getLocations()  ?>
                                 <label class="text-light mt-3">From</label>
                                 <select name="from_id" class="form-control">
+                                    <option value="">Select</option>
                                     <?php foreach ($locations as $location): ?>
-                                        <option value="">Select</option>
                                         <option value="<?php echo $location['id'] ?>"><?php echo $location['name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -101,7 +101,7 @@
                 ?>
                 <div class="col">
                     <div class="card h-100">
-                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/0<?php echo $images[rand(0,2)] ?>.webp" class="card-img-top"/>
+                        <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/new/standard/city/0<?php echo $images[rand(0,2)] ?>.webp" class="card-img-top"/>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $package['name'] ?></h5>
                             <p class="card-text">
@@ -128,26 +128,26 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
 
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Wintry Mountain Landscape" />
                 </div>
 
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Mountains in the Clouds" />
 
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Boat on Calm Water" />
                 </div>
 
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Waves at Sea" />
 
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+                    <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
                         class="w-100 shadow-1-strong rounded mb-4" alt="Yosemite National Park" />
                 </div>
             </div>

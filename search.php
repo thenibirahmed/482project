@@ -127,10 +127,10 @@
                                         <tr>
                                             <td scope="col"><?php echo $package['id'] ?></td>
                                             <td scope="col"><?php echo $package['name'] ?></td>
-                                            <td scope="col"><?php echo $package['from_id'] ?></td>
-                                            <td scope="col"><?php echo $package['to_id'] ?></td>
-                                            <td scope="col"><?php echo $package['from_date'] ?></td>
-                                            <td scope="col"><?php echo $package['to_date'] ?></td>
+                                            <td scope="col"><?php echo getSingleLocation($package['from_id']) != null ? getSingleLocation($package['from_id'])['name'] : 'Not Found' ?></td>
+                                            <td scope="col"><?php echo getSingleLocation($package['to_id']) != null ? getSingleLocation($package['to_id'])['name'] : 'Not Found' ?></td>
+                                            <td scope="col"><?php echo date( 'd M Y' ,strtotime($package['from_date'])) ?></td>
+                                            <td scope="col"><?php echo date( 'd M Y' ,strtotime($package['to_date'])) ?></td>
                                             <td scope="col"><?php echo $package['price'] ?></td>
                                             <td scope="col"><?php echo substr($package['descriptions'], 0, 100); ?></td>
                                             <td scope="col">

@@ -3,6 +3,7 @@
 - Payment gateway (Optional)
 - CDN
 - Encryption
-- AJAX
 - Lazy Loading
 - SQL injection 
+- Memory Wall
+- Video

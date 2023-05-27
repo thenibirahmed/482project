@@ -1,3 +1,4 @@
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/admin/functions/locations.php" ?>
 <?php require $_SERVER['DOCUMENT_ROOT'] . "/admin/functions/packages.php" ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,23 +65,23 @@
         <div class="container">
             <div class="row pt-5">
                 <div class="col-8">
-                    <img class="img-fluid w-100" src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" alt="">
+                    <img loading="lazy"  class="img-fluid w-100" src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" alt="">
                     <h2 class="mt-4"><?php echo $package['name'] ?></h2>
                     <?php echo $package['descriptions'] ?>
                 </div>
                 <div class="col-4">
                     <h2 class="mb-4">Details</h2>
                     <ul>
-                        <li><b>FROM:</b> <?php echo $package['from_id'] ?></li>
-                        <li><b>TO:</b> <?php echo $package['to_id'] ?></li>
+                        <li><b>FROM:</b> <?php echo getSingleLocation($package['from_id'])['name'] ?></li>
+                        <li><b>TO:</b> <?php echo getSingleLocation($package['to_id']) != null ? getSingleLocation($package['to_id'])['name'] : 'Not Found' ?></li>
                         <li><b>FROM DATE:</b> <?php echo date( 'd M Y' ,strtotime($package['from_date'])) ?></li>
                         <li><b>TO DATE:</b> <?php echo date( 'd M Y' ,strtotime($package['to_date'])) ?></li>
                     </ul>
                     <h2 class="mt-4">Price: <span class="text-success">$<?php echo $package['price'] ?></span></h2>
                     <div class="d-grid mt-4">
                         <a href="checkout.php?id=<?php echo $package['id'] ?>" class="btn btn-success btn-lg">Book Now</a>
-                        <img class="img-fluid w-100 mt-5" src="https://mdbcdn.b-cdn.net/img/new/standard/city/048.webp">
-                        <img class="img-fluid w-100 mt-2" src="https://mdbcdn.b-cdn.net/img/new/standard/city/050.webp">
+                        <img loading="lazy"  class="img-fluid w-100 mt-5" src="https://mdbcdn.b-cdn.net/img/new/standard/city/048.webp">
+                        <img loading="lazy"  class="img-fluid w-100 mt-2" src="https://mdbcdn.b-cdn.net/img/new/standard/city/050.webp">
                     </div>
                 </div>
             </div>

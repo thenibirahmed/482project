@@ -4,7 +4,7 @@
         <div class="alert alert-danger" role="alert">
             Direct Access not allowed
         </div>
-    <?php }
+    <?php die; } 
     $package = getSinglePackage($_GET['id']);
 ?>
 	<div class="container-fluid">
