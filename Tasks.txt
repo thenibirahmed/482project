@@ -1,9 +1,11 @@
 - Image upload
 - SMS sending
 - Payment gateway (Optional)
+- Memory Wall
+- Video
+
+
 - CDN
 - Encryption
 - Lazy Loading
 - SQL injection 
-- Memory Wall
-- Video

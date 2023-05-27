@@ -25,9 +25,9 @@ if( isset($_POST['create_package']) ){
     // Insert package
     if( empty($errors) ){
         // Upload images
-        $images = uploadMultipleImages($images);
+        $images = json_encode(uploadMultipleImages($images));
 
-        $query = "INSERT INTO packages (name, from_id, to_id, price, descriptions, from_date, to_date) VALUES ('$name', '$from_id', '$to_id', '$price', '$descriptions', '$from_date', '$to_date')";
+        $query = "INSERT INTO packages (name, from_id, to_id, price, descriptions, from_date, to_date, images) VALUES ('$name', '$from_id', '$to_id', '$price', '$descriptions', '$from_date', '$to_date', '$images')";
         $result = mysqli_query($conn, $query);
 
         if( $result ){
@@ -65,9 +65,9 @@ if( isset($_POST['edit_package']) ){
     // Insert package
     if( empty($errors) ){
         // Upload images
-        $images = uploadMultipleImages($images);
+        $images = json_encode(uploadMultipleImages($images));
 
-        $query = "UPDATE packages SET name = '$name', from_id = '$from_id', to_id = '$to_id', price = '$price', descriptions = '$descriptions', from_date = '$from_date', to_date = '$to_date' WHERE id = '$id'";
+        $query = "UPDATE packages SET name = '$name', from_id = '$from_id', to_id = '$to_id', price = '$price', descriptions = '$descriptions', from_date = '$from_date', to_date = '$to_date', images = '$images' WHERE id = '$id'";
         $result = mysqli_query($conn, $query);
 
         if( $result ){
@@ -96,30 +96,30 @@ if( isset($_GET['delete_id']) ){
     header('location: /admin/packages/');
 }
 
-function uploadImage($image, $dir = '/images/'){
+function uploadMultipleImages($images, $dir = '/images/'){
 
-    // Get reference to uploaded image
-    $image_file = $image;
+    // Count # of uploaded files in array
+    $total = count($images['name']);
+    $links = [];
 
-    // Exit if no file uploaded
-    if (!isset($image_file)) {
-        die('No file uploaded.');
+    // Loop through each file
+    for( $i=0 ; $i < $total ; $i++ ) {
+        //Get the temp file path
+        $tmpFilePath = $images['tmp_name'][$i];
+
+        //Make sure we have a file path
+        if ($tmpFilePath != ""){
+            //Setup our new file path
+            $newFilePath = $_SERVER['DOCUMENT_ROOT'] . $dir . $images['name'][$i];
+
+            //Upload the file into the temp dir
+            if(move_uploaded_file($tmpFilePath, $newFilePath)) {
+                $links[] = $newFilePath;
+            }
+        }
     }
 
-    // Exit if is not a valid image file
-    $image_type = exif_imagetype($image_file["tmp_name"]);
-    if (!$image_type) {
-        die('Uploaded file is not an image.');
-    }
-
-    // Move the temp image file to the images/ directory
-    move_uploaded_file(
-        // Temp image location
-        $image_file["tmp_name"],
-
-        // New image location
-        $_SERVER['DOCUMENT_ROOT'] . $dir . $image_file["name"]
-    );    
+    return $links;
 }
 
 function getPackages(){
