@@ -1,8 +1,14 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/admin/functions/packages.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/connection.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/lib/SslCommerzNotification.php";
+// require_once $_SERVER['DOCUMENT_ROOT'] . "/db_connection.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/OrderTransaction.php";
+
+use SslCommerz\SslCommerzNotification;
+
 
 if(isset($_POST['checkout'])){
-    require_once $_SERVER['DOCUMENT_ROOT'] . "/admin/functions/packages.php";
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/inc/connection.php';
 
     $fname = $_POST['f_name'] ? trim($_POST['f_name']) : '';
     $lname = $_POST['l_name'] ? trim($_POST['l_name']) : '';
@@ -40,7 +46,10 @@ if(isset($_POST['checkout'])){
         $mobile_no=$phone;
         $message="Dear $fname sir/maam, Your Booking is successful. Have an amazing trip!";
         $user_email='thenibirahmed@gmail.com';
-        $reponse = sendSMS($ap_key,$sender_id,$mobile_no,$message,$user_email);
+        sendSMS($ap_key,$sender_id,$mobile_no,$message,$user_email);
+
+        $last_id = $conn->insert_id;
+        initiateSSLCommerz($name,$email,$phone,$price,$last_id);
 
         $_SESSION['success'] = 'Booking successful';
         header('Location: ../index.php');
@@ -72,3 +81,52 @@ function sendSMS($ap_key,$sender_id,$mobile_no,$message,$user_email){
 }
 
 
+function initiateSSLCommerz($name,$email,$phone,$amount,$last_id){
+    global $conn;
+    # Organize the submitted/inputted data
+    $post_data = array();
+
+    $post_data['total_amount'] = $amount;
+    $post_data['currency'] = "BDT";
+    $post_data['tran_id'] = "SSLCZ_TEST_" . uniqid();
+
+    # CUSTOMER INFORMATION
+    $post_data['cus_name'] = $name;
+    $post_data['cus_email'] = $email;
+    $post_data['cus_add1'] = "Dhaka";
+    $post_data['cus_add2'] = "Dhaka";
+    $post_data['cus_city'] = "Dhaka";
+    $post_data['cus_state'] = "Dhaka";
+    $post_data['cus_postcode'] = "1000";
+    $post_data['cus_country'] = "Bangladesh";
+    $post_data['cus_phone'] = $phone;
+    $post_data['cus_fax'] = "01711111111";
+
+    # SHIPMENT INFORMATION
+    $post_data["shipping_method"] = "YES";
+    $post_data['ship_name'] = "Store Test";
+    $post_data['ship_add1'] = "Dhaka";
+    $post_data['ship_add2'] = "Dhaka";
+    $post_data['ship_city'] = "Dhaka";
+    $post_data['ship_state'] = "Dhaka";
+    $post_data['ship_postcode'] = "1000";
+    $post_data['ship_phone'] = "";
+    $post_data['ship_country'] = "Bangladesh";
+
+    $post_data['emi_option'] = "1";
+    $post_data["product_category"] = "Electronic";
+    $post_data["product_profile"] = "general";
+    $post_data["product_name"] = "Computer";
+    $post_data["num_of_item"] = "1";
+
+    $query = new OrderTransaction();
+    $sql = $query->saveTransactionQuery($post_data);
+
+    if ($conn->query($sql) === TRUE) {
+        # Call the Payment Gateway Library
+        $sslcomz = new SslCommerzNotification();
+        $sslcomz->makePayment($post_data, 'hosted', 'json', $last_id);
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}

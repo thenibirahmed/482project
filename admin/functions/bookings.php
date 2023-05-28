@@ -171,3 +171,10 @@ function markBookingAsUnpaid($id){
     $_SESSION['errors'] = $errors;
     header('location: /admin');
 }
+
+function markBookingAsPaidWithoutRedirect($id){
+    global $conn;
+
+    $query = "UPDATE bookings SET is_paid = 1 WHERE id = $id";
+    mysqli_query($conn, $query);
+}

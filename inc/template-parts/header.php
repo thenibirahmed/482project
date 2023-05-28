@@ -1,6 +1,7 @@
 <?php
     require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/packages.php';
     require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/locations.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/admin/functions/bookings.php';
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +39,7 @@
                         <a class="nav-link" href="/login.php">Login</a>
                         <a class="nav-link" href="/registration.php">Register</a>
                         <?php if( isset( $_SESSION['user']) ): ?>
-                            <a class="nav-link btn btn-outline-success" href="/admin.php">Dashboard</a>
+                            <a class="nav-link btn btn-outline-success" href="/admin">Dashboard</a>
                         <?php endif; ?>
                     </div>
                 </div>
