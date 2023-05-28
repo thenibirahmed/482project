@@ -17,6 +17,7 @@ if(isset($_POST['checkout'])){
     $package_id = $_POST['package_id'] ? trim($_POST['package_id']) : '';
     $user_id = $_POST['user_id'] ? trim($_POST['user_id']) : '';
     $pax = $_POST['pax'] ? trim($_POST['pax']) : '';
+    $address = $_POST['address'] ? trim($_POST['address']) : '';
     $members_info = $_POST['members_info'] ? trim($_POST['members_info']) : '';
 
     if(empty($fname) || empty($lname) || empty($email) || empty($phone) || empty($package_id) || empty($user_id) || empty($pax)){
@@ -36,7 +37,7 @@ if(isset($_POST['checkout'])){
 
     $name = $fname . ' ' . $lname;
 
-    $sql = "INSERT INTO bookings (user_id, package_id, name, email, phone, pax, price, members_info) VALUES ('$user_id', '$package_id', '$name', '$email', '$phone', '$pax', '$price', '$members_info')";
+    $sql = "INSERT INTO bookings (user_id, package_id, name, email, phone, pax, price, members_info, address) VALUES ('$user_id', '$package_id', '$name', '$email', '$phone', '$pax', '$price', '$members_info', '$address')";
     $query = mysqli_query($conn, $sql);
 
     if($query){

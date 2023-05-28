@@ -68,9 +68,7 @@
 
                     <div class="mb-3">
                         <label for="descriptions" class="form-label"><b>Description</b></label>
-                        <textarea class="form-control" id="descriptions" name="descriptions">
-                            <?php echo $package['description'] ?? '' ?>
-                        </textarea>
+                        <textarea class="form-control" id="descriptions" name="descriptions"><?php echo $package['descriptions'] ?? '' ?></textarea>
                     </div>
 
                     <!-- Get multiple images -->
