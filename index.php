@@ -56,10 +56,14 @@
                     $images = [ 44, 42, 43 ];
                     $packages = getPackages();
                     foreach( $packages as $package ):
+                    $images = json_decode($package['images']);
                 ?>
                 <div class="col">
                     <div class="card h-100">
-                        <img loading="lazy"  src="https://mdbcdn.b-cdn.net/img/new/standard/city/0<?php echo $images[rand(0,2)] ?>.webp" class="card-img-top"/>
+                        <img loading="lazy" 
+                        src="<?php echo $images[0] ?>"
+                        onerror="this.src='https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp'" 
+                        class="card-img-top"/>
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $package['name'] ?></h5>
                             <p class="card-text">

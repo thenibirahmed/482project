@@ -33,8 +33,8 @@
                     <div class="bg-white mb-5">
                         <?php 
                             if( $booking_id != '' || $booking_id != null ):
-                            $booking = getSingleBooking($booking_id);
                             markBookingAsPaidWithoutRedirect($booking_id);
+                            $booking = getSingleBooking($booking_id);
                         ?>
 
                             <table class="table table-responsive table-striped table-hover">
