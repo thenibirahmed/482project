@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2023 at 05:27 AM
+-- Generation Time: May 28, 2023 at 05:41 AM
 -- Server version: 8.0.27
 -- PHP Version: 8.2.4
 
@@ -46,8 +46,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `name`, `email`, `phone`, `address`, `user_id`, `package_id`, `is_paid`, `members_info`, `pax`, `price`) VALUES
-(23, 'Nibir Ahmed', 'nibirahmed@gmail.com', '01798449001', NULL, 12, 20, 1, 'All male', 2, 15000),
-(24, 'Nibir Ahmed', 'nibirahmed@gmail.com', '01628715444', 'Uttara', 12, 22, 1, 'Self', 1, 6500);
+(23, 'Nibir Ahmed', 'nibirahmed@gmail.com', '01798449001', NULL, 21, 20, 1, 'All male', 2, 15000),
+(24, 'Nibir Ahmed', 'nibirahmed@gmail.com', '01628715444', 'Uttara', 21, 22, 1, 'Self', 1, 6500);
 
 -- --------------------------------------------------------
 
