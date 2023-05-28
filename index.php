@@ -14,7 +14,7 @@
 
                             <form action="search.php" method="GET">
                                 <label class="text-light">Tour Name</label>
-                                <input type="text" class="form-control">
+                                <input type="text" name="name" class="form-control">
 
                                 <?php $locations = getLocations()  ?>
                                 <label class="text-light mt-3">From</label>
@@ -53,7 +53,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
 
                 <?php 
-                    $images = [ 44, 42, 43 ];
+                    // $images = [ 44, 42, 43 ];
                     $packages = getPackages();
                     foreach( $packages as $package ):
                     $images = json_decode($package['images']);
