@@ -196,3 +196,4 @@ function searchPackages($from_id, $to_id, $name){
     return $packages;
 
 }
+

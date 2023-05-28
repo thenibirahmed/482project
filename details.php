@@ -81,7 +81,7 @@
                         <li><b>FROM DATE:</b> <?php echo date( 'd M Y' ,strtotime($package['from_date'])) ?></li>
                         <li><b>TO DATE:</b> <?php echo date( 'd M Y' ,strtotime($package['to_date'])) ?></li>
                     </ul>
-                    <h2 class="mt-4">Price: <span class="text-success">$<?php echo $package['price'] ?></span></h2>
+                    <h2 class="mt-4">Price: <span class="text-success"><?php echo $package['price'] ?> Tk</span></h2>
                     <div class="d-grid mt-4">
                         <a href="checkout.php?id=<?php echo $package['id'] ?>" class="btn btn-success btn-lg">Book Now</a>
 

@@ -91,3 +91,35 @@ function deleteBooking($id){
     header('location: ../bookings/index.php');
 }
 
+function getPackageBookings($id){
+    global $conn;
+
+    $query = "SELECT * FROM bookings WHERE package_id = $id";
+    $result = mysqli_query($conn, $query);
+
+    $bookings = mysqli_num_rows($result) > 0 ? mysqli_fetch_all($result, MYSQLI_ASSOC) : null;
+
+    return $bookings;
+}
+
+function getPackageBookingsRevenue($id){
+    global $conn;
+
+    $query = "SELECT SUM(price) AS revenue FROM bookings WHERE is_paid = 1 AND package_id = $id";
+    $result = mysqli_query($conn, $query);
+
+    $revenue = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
+
+    return $revenue;
+}
+
+function getPackageBookingsDue($id){
+    global $conn;
+
+    $query = "SELECT SUM(price) AS due FROM bookings WHERE is_paid = 0 AND package_id = $id";
+    $result = mysqli_query($conn, $query);
+
+    $revenue = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
+
+    return $revenue;
+}
