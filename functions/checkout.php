@@ -30,7 +30,7 @@ if(isset($_POST['checkout'])){
 
     $name = $fname . ' ' . $lname;
 
-    $sql = "INSERT INTO bookings (user_id, package_id, name, email, phone, pax, price) VALUES ('$user_id', '$package_id', '$name', '$email', '$phone', '$pax', '$price')";
+    $sql = "INSERT INTO bookings (user_id, package_id, name, email, phone, pax, price, members_info) VALUES ('$user_id', '$package_id', '$name', '$email', '$phone', '$pax', '$price', '$members_info')";
     $query = mysqli_query($conn, $sql);
 
     if($query){
@@ -38,7 +38,7 @@ if(isset($_POST['checkout'])){
         $ap_key='175589388382444820230124030139pmShsZYiQC'; 
         $sender_id='361';
         $mobile_no=$phone;
-        $message='Your Booking is successful. Have an amazing trip!';
+        $message="Dear $fname sir/maam, Your Booking is successful. Have an amazing trip!";
         $user_email='thenibirahmed@gmail.com';
         $reponse = sendSMS($ap_key,$sender_id,$mobile_no,$message,$user_email);
 

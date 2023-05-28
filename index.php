@@ -230,16 +230,16 @@
 
                     <ul class="list-unstyled mb-0">
                         <li>
-                            <a href="#!" class="text-white text-decoration-none">Link 1</a>
+                            <a href="#!" class="text-white text-decoration-none">Privacy Policy</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white text-decoration-none">Link 2</a>
+                            <a href="#!" class="text-white text-decoration-none">Terms and Conditions</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white text-decoration-none">Link 3</a>
+                            <a href="#!" class="text-white text-decoration-none">Refund Policy</a>
                         </li>
                         <li>
-                            <a href="#!" class="text-white text-decoration-none">Link 4</a>
+                            <a href="#!" class="text-white text-decoration-none">Contact Us</a>
                         </li>
                     </ul>
                 </div>

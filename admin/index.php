@@ -54,12 +54,17 @@
 									<td><?php echo $user != null ? $user['name'] : 'Not Found' ?></td>
 									<?php $package = getSinglePackage($booking['package_id']) ?>
 									<td><?php echo $package != null ? $package['name'] : 'Not Found' ?></td>
-									<td><?php echo $booking['is_paid'] ?></td>
+									<td><?php echo $booking['is_paid'] ? '<span class="badge text-bg-success">Paid</span>' : '<span class="badge text-bg-danger">Unpaid</span>' ?></td>
 									<td><?php echo $booking['members_info'] ?></td>
 									<td><?php echo $booking['pax'] ?></td>
 									<td><?php echo $booking['price'] ?></td>
 									<?php if( $_SESSION['user']['role'] == 'admin' ): ?>
 										<td>
+											<?php if( $booking['is_paid'] ): ?>
+												<a href="/admin/functions/bookings.php?mark_as_unpaid=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-danger">Mark As Unpaid</a>
+											<?php else: ?>
+												<a href="/admin/functions/bookings.php?mark_as_paid=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-success">Mark As Paid</a>
+											<?php endif ?>
 											<a href="/admin/bookings/edit.php?id=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
 											<a href="/admin/functions/bookings.php?delete_id=<?php echo $booking['id'] ?>" class="btn btn-sm btn-outline-secondary"
 											onclick="return confirm('Are you sure you want to delete the booking?')">Delete</a>

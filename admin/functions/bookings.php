@@ -2,6 +2,22 @@
 
 require $_SERVER['DOCUMENT_ROOT'] .'/inc/connection.php';
 
+if(isset($_GET['mark_as_paid'])){
+    $id = $_GET['mark_as_paid'] ?? '';
+    
+    if( $id != '' || $id != null ){
+        markBookingAsPaid($id);
+    }
+}
+
+if(isset($_GET['mark_as_unpaid'])){
+    $id = $_GET['mark_as_unpaid'] ?? '';
+    
+    if( $id != '' || $id != null ){
+        markBookingAsUnpaid($id);
+    }
+}
+
 if( isset($_POST['update_booking']) ){
 
     $name = $_POST['name'] ?? '';
@@ -122,4 +138,36 @@ function getPackageBookingsDue($id){
     $revenue = mysqli_num_rows($result) > 0 ? mysqli_fetch_assoc($result) : null;
 
     return $revenue;
+}
+
+function markBookingAsPaid($id){
+    global $conn;
+
+    $query = "UPDATE bookings SET is_paid = 1 WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+
+    if( $result ){
+        header('location: /admin');
+    }else{
+        $errors[] = 'Failed to mark booking as paid';
+    }
+
+    $_SESSION['errors'] = $errors;
+    header('location: /admin');
+}
+
+function markBookingAsUnpaid($id){
+    global $conn;
+
+    $query = "UPDATE bookings SET is_paid = 0 WHERE id = $id";
+    $result = mysqli_query($conn, $query);
+
+    if( $result ){
+        header('location: /admin');
+    }else{
+        $errors[] = 'Failed to mark booking as paid';
+    }
+
+    $_SESSION['errors'] = $errors;
+    header('location: /admin');
 }
