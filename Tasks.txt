@@ -2,7 +2,6 @@
 - Payment gateway (Optional)
 - Memory Wall
 - Video
-- Revenue
 
 
 - CDN
@@ -10,3 +9,4 @@
 - Lazy Loading
 - SQL injection 
 - Image upload
+- Revenue
