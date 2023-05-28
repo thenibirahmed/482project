@@ -37,7 +37,7 @@
                         <div class="card border-success mb-3">
                             <div class="card-body text-success">
                                 <h6 class="card-title">Revenue</h6>
-                                <h3 class="card-text"><b><?php echo $revenue['revenue'] ?> Tk</b></h3>
+                                <h3 class="card-text"><b><?php echo $revenue['revenue'] ?? 0 ?> Tk</b></h3>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="card border-danger mb-3">
                             <div class="card-body text-danger">
                                 <h6 class="card-title">Due</h6>
-                                <h3 class="card-text"><b><?php $due['due'] ? $due['due'] : 0 ?></b></h3>
+                                <h3 class="card-text"><b><?php echo $due['due'] ?? 0 ?> Tk</b></h3>
                             </div>
                         </div>  
                     </div>
