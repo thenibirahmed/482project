@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center border border-dark rounded border-2 py-4">
-                    <h3 class="pt-3">Are You Ready<small class="text-muted">To Book Your Next Trip?</small></h3>
+                    <h3 class="pt-3">Are You Ready <small class="text-muted">To Book Your Next Trip?</small></h3>
                     <p class="small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, blanditiis.</p>
                     <a href="#" class="btn btn-dark btn-lg mb-3">Book Now</a>
                 </div>
