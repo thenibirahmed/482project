@@ -1,6 +1,6 @@
 <?php 
 
-require_once '../inc/connection.php';
+require_once  $_SERVER['DOCUMENT_ROOT'] . '/inc/connection.php';
 
 if ( isset( $_POST['login'] ) ) {
     $email = $_POST['email'] ?? '';
