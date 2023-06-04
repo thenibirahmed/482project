@@ -7,13 +7,13 @@ live url: https://tms.nibirahmed.com/
 
 Admin user credentials
 ------------------------
-Email: admin@admin.com
-Password: admin
+- Email: `admin@admin.com`
+- Password: `admin`
 
 User credentials
 ------------------------
-Email: customer@customer.com
-Password: customer
+- Email: `customer@customer.com`
+- Password: `customer`
 
 
 How to Deploy:
